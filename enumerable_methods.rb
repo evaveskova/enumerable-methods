@@ -29,3 +29,8 @@ def my_any?
   self.my_each {|elem| return true if yield(elem)}
   false
 end
+
+def my_none?
+  self.my_each {|elem| return falseif yield(elem)}
+  true
+end
