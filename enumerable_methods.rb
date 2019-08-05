@@ -19,3 +19,8 @@ def my_select
   self.my_each {|elem| new_arr << elem if yield(elem)}
   arr
 end
+
+def my_all?
+  self.my_each {|elem| return false if yield(elem) == false}
+  true
+end
