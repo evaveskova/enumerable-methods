@@ -9,16 +9,20 @@ end
 
 def my_each_with_index()
   index = 0
-  for elem in self
-    yield(self[index])
-    i += 1
+  for i in self
+    yield(self[index], index)
+    index += 1
   end
 end
 
 def my_select
-  arr = Array.new[]
-  self.my_each {|elem| new_arr << elem if yield(elem)}
-  arr
+  result = []
+  self.my_each do |elem|
+    if yield(elem)
+      result << elem
+    end
+  end
+  return result
 end
 
 def my_all?
@@ -39,33 +43,28 @@ end
 def my_count
   count = 0
   self.my_each do |elem|
-
     if yield(elem)
       count += 1
     end
   end
+  return count
 end
 
-def my_map(*procs)
+def my_map(&block)
   result = []
-  if procs.count == 0
-    self.my_each {|elem| result << yield(elem)}
-
+  unless block == 0
+    self.my_each do |elem|
+      result << block.call(elem)
+    end
   else
-    proc = procs[0]
-    self.my_each(&proc)
-
     return result
   end
+    return result
 end
 
-def my_inject(*init)
-  result = 0
-  if init.count == 0
-    self.my_each {|elem| init - yield(init, elem)}
-
-    return init
-  end
+def my_inject init
+    self.my_each {|elem| init = yield(init, elem)}
+    init
 end
 
 def multiply_els(array)
@@ -74,6 +73,6 @@ def multiply_els(array)
     result *= elem
   end
     return result
-  end
+end
 
 end
