@@ -38,8 +38,39 @@ end
 def my_count
   count = 0
   self.my_each do |elem|
+
     if yield(elem)
       count += 1
     end
   end
 end
+
+def my_map(*procs)
+  result = []
+  if procs.count == 0
+    self.my_each {|elem| result << yield(elem)}
+
+  else
+    proc = procs[0]
+    self.my_each(&proc)
+
+    return result
+  end
+end
+
+def my_inject(*init)
+  result = 0
+  if init.count == 0
+    self.my_each {|elem| init - yield(init, elem)}
+
+    return init
+  end
+end
+
+def multiply_els(array)
+  result = 1
+  for elem in array
+    result *= elem
+  end
+    return result
+  end
