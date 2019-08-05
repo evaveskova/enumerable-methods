@@ -31,6 +31,15 @@ def my_any?
 end
 
 def my_none?
-  self.my_each {|elem| return falseif yield(elem)}
+  self.my_each {|elem| return false if yield(elem)}
   true
+end
+
+def my_count
+  count = 0
+  self.my_each do |elem|
+    if yield(elem)
+      count += 1
+    end
+  end
 end
