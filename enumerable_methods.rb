@@ -13,3 +13,9 @@ def my_each_with_index()
     i += 1
   end
 end
+
+def my_select
+  arr = Array.new[]
+  self.my_each {|elem| new_arr << elem if yield(elem)}
+  arr
+end
