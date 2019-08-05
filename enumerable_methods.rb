@@ -24,3 +24,13 @@ def my_all?
   self.my_each {|elem| return false if yield(elem) == false}
   true
 end
+
+def my_any?
+  self.my_each {|elem| return true if yield(elem)}
+  false
+end
+
+def my_all?
+  self.my_each {|elem| return false if yield(elem)}
+  true
+end
