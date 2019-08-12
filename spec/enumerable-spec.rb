@@ -1,13 +1,13 @@
 require_relative '../lib/enumerable_methods'
 describe '::Enumerables' do
-  let(:array) { [1,7,3,4,7,8] }
+  let(:array) { [1,7,3,4,7] }
 
   describe '#my_each' do
 
     it 'returns the array' do
       expect do
         array.my_each {|a| print a}
-      end.to output("173478").to_stdout
+      end.to output("17347").to_stdout
     end
 
     it 'returns an empty array' do
@@ -67,5 +67,12 @@ describe '::Enumerables' do
       expect(array.my_none? {|el| el == 7}).to eql(false)
     end
   end
+
+  describe '#my_count' do
+    it 'returns the number of elements which are within an array' do
+      expect(array.my_count {|a| a}).to eql(5)
+    end
+  end
+
 
 end
