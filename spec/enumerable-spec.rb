@@ -68,15 +68,25 @@ describe '::Enumerables' do
     end
   end
 
-  describe '#my_count' do
-    it 'returns the number of elements which are within an array' do
+  describe "#my_count" do
+    it "returns the number of elements which are within an array" do
       expect(array.my_count {|a| a}).to eql(5)
     end
 
-    it 'does not return the correct number of elements within an array' do
+    it "does not return the correct number of elements within an array" do
       expect(array.my_count {|a| a}).to eql(4)
     end
   end
 
+  describe '#my_map' do
+    it "creates a new array with the values returned by the block" do
+      #original test array = [1,7,3,4,7]
+      expect(array.my_map {|x| x + 1}).to eql([2, 8, 4, 5, 8])
+    end
+
+    it "creates an empty array" do
+      expect(array.my_map {|x| x + 1}).not_to eql([])
+    end
+  end
 
 end
