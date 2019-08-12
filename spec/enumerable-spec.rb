@@ -6,7 +6,7 @@ describe '::Enumerables' do
     it "returns the array" do
       expect do
         array.my_each {|a| print a}
-      end.to output("17347").to_stdout
+      end.to output("173478").to_stdout
     end
 
     it "returns an empty array" do
@@ -32,7 +32,7 @@ describe '::Enumerables' do
       end
 
       it "does not return values less than 7" do
-        expect(array.my_select {|a| a > 7}).to eql([7, 7])
+        expect(array.my_select {|a| a > 7}).to eql([8])
       end
   end
 
