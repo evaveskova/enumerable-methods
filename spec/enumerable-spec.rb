@@ -32,8 +32,8 @@ describe '::Enumerables' do
         expect(array.my_select {|a| a < 7}).to eql([1, 3, 4])
       end
 
-      it "doesn't return values less than 7" do
-        expect(array.my_select {|a| a > 7}).to eql([8])
+      it "does not return values less than 7" do
+        expect(array.my_select {|a| a > 7}).to eql([7, 7])
       end
   end
 
