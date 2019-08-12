@@ -10,7 +10,7 @@ def my_each
   # end
 end
 
-def my_each_with_index()
+def my_each_with_index
   self.size.times do |index|
     yield(self[index], index)
   end
