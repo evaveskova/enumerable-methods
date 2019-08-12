@@ -44,12 +44,13 @@ describe '::Enumerables' do
     end
 
   describe "#my_any?" do
+    
     it "returns true if any element is even" do
       expect(array.my_any? {|el| el % 2 == 0}).to eql(true)
+    end
 
-      it "returns false if all elements are equal to 2" do
-        expect(array.all? {|a| a == 2}).not_to  eql(false)
-      end
+    it "returns false if no elements are equal to 2" do
+      expect(array.all? {|a| a == 2}).to  eql(false)
     end
 
     it "returns false if no element is greater than 8" do
@@ -68,12 +69,12 @@ describe '::Enumerables' do
   end
 
   describe "#my_count" do
-    it "returns the number of elements which are within an array" do
-      expect(array.my_count {|a| a}).to eql(5)
+    it "returns the correct number of elements" do
+      expect(array.my_count {|a| a}).to eql(6)
     end
 
-    it "does not return the correct number of elements within an array" do
-      expect(array.my_count {|a| a}).to eql(4)
+    it "does not return an incorrect number of elements" do
+      expect(array.my_count {|a| a}).not_to eql(4)
     end
   end
 
