@@ -45,7 +45,6 @@ describe '::Enumerables' do
     it 'returns false if no element is greater than 8' do
       expect(array.my_any? {|el| el > 8}).to eql(false) 
     end
-   
   end
 
 end
