@@ -7,7 +7,7 @@ describe '::Enumerables' do
     it 'returns the array' do
       expect do
         array.my_each {|a| print a}
-      end.to output("17347").to_stdout
+      end.to output("173478").to_stdout
     end
 
     it 'returns an empty array' do
@@ -22,7 +22,7 @@ describe '::Enumerables' do
     it "returns elements and their index" do
       expect do
         array.my_each_with_index {|el, index = 0| puts "#{el} is in position #{index}"}
-      end.to output("1 is in position 0\n7 is in position 1\n3 is in position 2\n4 is in position 3\n7 is in position 4\n").to_stdout
+      end.to output("1 is in position 0\n7 is in position 1\n3 is in position 2\n4 is in position 3\n7 is in position 4\n8 is in position 5\n").to_stdout
     end
   end
 
@@ -39,8 +39,13 @@ describe '::Enumerables' do
 
   describe "#my_any?" do
     it 'returns true if any element is even' do
-      expect(array.my_any? {|el| el % 2 == 0})
+      expect(array.my_any? {|el| el % 2 == 0}).to eql(true)
     end
+
+    it 'returns false if no element is greater than 8' do
+      expect(array.my_any? {|el| el > 8}).to eql(false) 
+    end
+   
   end
 
 end
