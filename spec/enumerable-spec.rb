@@ -23,6 +23,12 @@ describe '::Enumerables' do
         array.my_each_with_index {|el, index = 0| puts "#{el} is in position #{index}"}
       end.to output("1 is in position 0\n7 is in position 1\n3 is in position 2\n4 is in position 3\n7 is in position 4\n8 is in position 5\n").to_stdout
     end
+
+    it "does not return elements and their index" do
+      expect do
+        array.my_each_with_index {|el, index = 0| puts "#{el} is in position #{index}"}
+        end.to output("").to_stdout
+      end
   end
 
 
