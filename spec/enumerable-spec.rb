@@ -32,8 +32,8 @@ describe '::Enumerables' do
         expect(array.my_select {|a| a < 7}).to eql([1, 3, 4])
       end
 
-      it "doesn't return values less than 7" do
-        expect(array.my_select {|a| a > 7}).to eql([8])
+      it "does not return values less than 7" do
+        expect(array.my_select {|a| a > 7}).to eql([7, 7])
       end
   end
 
@@ -71,6 +71,10 @@ describe '::Enumerables' do
   describe '#my_count' do
     it 'returns the number of elements which are within an array' do
       expect(array.my_count {|a| a}).to eql(5)
+    end
+
+    it 'does not return the correct number of elements within an array' do
+      expect(array.my_count {|a| a}).to eql(4)
     end
   end
 
