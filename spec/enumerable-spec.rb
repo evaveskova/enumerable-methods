@@ -47,6 +47,10 @@ describe '::Enumerables' do
   describe "#my_any?" do
     it 'returns true if any element is even' do
       expect(array.my_any? {|el| el % 2 == 0}).to eql(true)
+
+      it 'returns false if all elements are equal to 2' do
+        expect(array.all? {|a| a == 2}).not_to  eql(false)
+      end
     end
 
     it 'returns false if no element is greater than 8' do
