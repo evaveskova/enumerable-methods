@@ -1,6 +1,6 @@
 require_relative '../lib/enumerable_methods'
 describe '::Enumerables' do
-  let(:array) { [1,7,3,4,7] }
+  let(:array) { [1,7,3,4,7,8] }
 
   describe '#my_each' do
 
@@ -26,19 +26,21 @@ describe '::Enumerables' do
     end
   end
 
-  it "does not return elements and their index" do
-    expect do
-      array.my_each_with_index {|el, index = 0| puts "#{el} is in position #{index}"}
-    end.to output("").to_stdout
-  end
 
   describe '#my_select' do
-    let(:array) { [1,7,3,4,7] }
       it 'returns value which are less than 7' do
-        expect(array.my_select {|a| a < 7}.to eql([1, 3, 4]))
+        expect(array.my_select {|a| a < 7}).to eql([1, 3, 4])
       end
 
-      it "returns values which are greater than 6"
-        expect(array.my_select {|a| a < 7}.not_to eql([7, 7]))
+      it "doesn't return values less than 7" do
+        expect(array.my_select {|a| a > 7}).to eql([8])
       end
+  end
+
+  describe "#my_any?" do
+    it 'returns true if any element is even' do
+      expect(array.my_any? {|el| el % 2 == 0})
     end
+  end
+
+end
