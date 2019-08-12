@@ -52,7 +52,9 @@ describe '::Enumerables' do
       expect(array.my_none? {|el| el == 9}).to eql(true)
     end
 
-    
+    it "returns false if an element satisfies the block" do
+      expect(array.my_none? {|el| el == 7}).to eql(false)
+    end
   end 
 
 end
