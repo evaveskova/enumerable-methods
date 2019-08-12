@@ -2,15 +2,14 @@ require_relative '../lib/enumerable_methods'
 describe '::Enumerables' do
   let(:array) { [1,7,3,4,7] }
 
-  describe '#my_each' do
-
-    it 'returns the array' do
+  describe "#my_each" do
+    it "returns the array" do
       expect do
         array.my_each {|a| print a}
       end.to output("17347").to_stdout
     end
 
-    it 'returns an empty array' do
+    it "returns an empty array" do
       array = []
       expect do
         array.my_each {|a| print a}
@@ -18,7 +17,7 @@ describe '::Enumerables' do
     end
   end
 
-  describe '#my_each_with_index' do
+  describe "#my_each_with_index" do
     it "returns elements and their index" do
       expect do
         array.my_each_with_index {|el, index = 0| puts "#{el} is in position #{index}"}
@@ -27,8 +26,8 @@ describe '::Enumerables' do
   end
 
 
-  describe '#my_select' do
-      it 'returns value which are less than 7' do
+  describe "#my_select" do
+      it "returns value which are less than 7" do
         expect(array.my_select {|a| a < 7}).to eql([1, 3, 4])
       end
 
@@ -37,23 +36,23 @@ describe '::Enumerables' do
       end
   end
 
-  describe '#my_all?' do
+  describe "#my_all?" do
     let(:array) { [2, 2, 2, 2, 2] }
-      it 'confirms that all elements in the array are equal to 2' do
+      it "confirms that all elements in the array are equal to 2" do
         expect(array.all? {|a| a == 2}).to  eql(true)
       end
     end
 
   describe "#my_any?" do
-    it 'returns true if any element is even' do
+    it "returns true if any element is even" do
       expect(array.my_any? {|el| el % 2 == 0}).to eql(true)
 
-      it 'returns false if all elements are equal to 2' do
+      it "returns false if all elements are equal to 2" do
         expect(array.all? {|a| a == 2}).not_to  eql(false)
       end
     end
 
-    it 'returns false if no element is greater than 8' do
+    it "returns false if no element is greater than 8" do
       expect(array.my_any? {|el| el > 8}).to eql(false)
     end
   end
