@@ -47,4 +47,12 @@ describe '::Enumerables' do
     end
   end
 
+  describe "#my_none?" do
+    it "returns true if no element satisfies the block" do
+      expect(array.my_none? {|el| el == 9}).to eql(true)
+    end
+
+    
+  end 
+
 end
