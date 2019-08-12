@@ -1,6 +1,6 @@
 require_relative '../lib/enumerable_methods'
 describe '::Enumerables' do
-  let(:array) { [1,7,3,4,7] }
+  let(:array) { [1,7,3,4,7,8] }
 
   describe '#my_each' do
 
@@ -28,7 +28,6 @@ describe '::Enumerables' do
 
 
   describe '#my_select' do
-    let(:array) { [1,7,3,4,7,8] }
       it 'returns value which are less than 7' do
         expect(array.my_select {|a| a < 7}).to eql([1, 3, 4])
       end
@@ -37,4 +36,11 @@ describe '::Enumerables' do
         expect(array.my_select {|a| a > 7}).to eql([8])
       end
   end
+
+  describe "#my_any?" do
+    it 'returns true if any element is even' do
+      expect(array.my_any? {|el| el % 2 == 0})
+    end
+  end
+
 end
