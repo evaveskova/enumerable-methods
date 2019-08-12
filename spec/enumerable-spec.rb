@@ -80,7 +80,12 @@ describe '::Enumerables' do
 
   describe '#my_map' do
     it "creates a new array with the values returned by the block" do
+      #original test array = [1,7,3,4,7]
       expect(array.my_map {|x| x + 1}).to eql([2, 8, 4, 5, 8])
+    end
+
+    it "creates an empty array" do
+      expect(array.my_map {|x| x + 1}).not_to eql([])
     end
   end
 
