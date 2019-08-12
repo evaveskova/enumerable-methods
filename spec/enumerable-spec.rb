@@ -72,6 +72,10 @@ describe '::Enumerables' do
     it 'returns the number of elements which are within an array' do
       expect(array.my_count {|a| a}).to eql(5)
     end
+
+    it 'does not return the correct number of elements within an array' do
+      expect(array.my_count {|a| a}).to eql(4)
+    end
   end
 
 
