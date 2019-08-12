@@ -37,13 +37,24 @@ describe '::Enumerables' do
       end
   end
 
+  describe '#my_all?' do
+    let(:array) { [2, 2, 2, 2, 2] }
+      it 'confirms that all elements in the array are equal to 2' do
+        expect(array.all? {|a| a == 2}).to  eql(true)
+      end
+    end
+
   describe "#my_any?" do
     it 'returns true if any element is even' do
       expect(array.my_any? {|el| el % 2 == 0}).to eql(true)
+
+      it 'returns false if all elements are equal to 2' do
+        expect(array.all? {|a| a == 2}).not_to  eql(false)
+      end
     end
 
     it 'returns false if no element is greater than 8' do
-      expect(array.my_any? {|el| el > 8}).to eql(false) 
+      expect(array.my_any? {|el| el > 8}).to eql(false)
     end
   end
 
@@ -55,6 +66,6 @@ describe '::Enumerables' do
     it "returns false if an element satisfies the block" do
       expect(array.my_none? {|el| el == 7}).to eql(false)
     end
-  end 
+  end
 
 end
