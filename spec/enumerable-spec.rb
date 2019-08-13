@@ -1,12 +1,13 @@
 require_relative '../lib/enumerable_methods'
+
 describe '::Enumerables' do
-  let(:array) { [1,7,3,4,7] }
+  let(:array) { [1,7,3,4,7,8] }
 
   describe "#my_each" do
     it "returns the array" do
       expect do
         array.my_each {|a| print a}
-      end.to output("17347").to_stdout
+      end.to output("173478").to_stdout
     end
 
     it "returns an empty array" do
@@ -23,12 +24,6 @@ describe '::Enumerables' do
         array.my_each_with_index {|el, index = 0| puts "#{el} is in position #{index}"}
       end.to output("1 is in position 0\n7 is in position 1\n3 is in position 2\n4 is in position 3\n7 is in position 4\n8 is in position 5\n").to_stdout
     end
-
-    it "does not return elements and their index" do
-      expect do
-        array.my_each_with_index {|el, index = 0| puts "#{el} is in position #{index}"}
-        end.to output("").to_stdout
-      end
   end
 
 
@@ -38,7 +33,7 @@ describe '::Enumerables' do
       end
 
       it "does not return values less than 7" do
-        expect(array.my_select {|a| a > 7}).to eql([7, 7])
+        expect(array.my_select {|a| a > 7}).to eql([8])
       end
   end
 
@@ -50,12 +45,13 @@ describe '::Enumerables' do
     end
 
   describe "#my_any?" do
+    
     it "returns true if any element is even" do
       expect(array.my_any? {|el| el % 2 == 0}).to eql(true)
+    end
 
-      it "returns false if all elements are equal to 2" do
-        expect(array.all? {|a| a == 2}).not_to  eql(false)
-      end
+    it "returns false if no elements are equal to 2" do
+      expect(array.all? {|a| a == 2}).to  eql(false)
     end
 
     it "returns false if no element is greater than 8" do
@@ -74,19 +70,19 @@ describe '::Enumerables' do
   end
 
   describe "#my_count" do
-    it "returns the number of elements which are within an array" do
-      expect(array.my_count {|a| a}).to eql(5)
+    it "returns the correct number of elements" do
+      expect(array.my_count {|a| a}).to eql(6)
     end
 
-    it "does not return the correct number of elements within an array" do
-      expect(array.my_count {|a| a}).to eql(4)
+    it "does not return an incorrect number of elements" do
+      expect(array.my_count {|a| a}).not_to eql(4)
     end
   end
 
   describe '#my_map' do
     it "creates a new array with the values returned by the block" do
       #original test array = [1,7,3,4,7]
-      expect(array.my_map {|x| x + 1}).to eql([2, 8, 4, 5, 8])
+      expect(array.my_map {|x| x + 1}).to eql([2, 8, 4, 5, 8,9])
     end
 
     it "creates an empty array" do
@@ -94,4 +90,15 @@ describe '::Enumerables' do
     end
   end
 
+  describe '#my_inject' do
+    it "returns an accumulated value" do 
+      expect(array.my_inject(0) {|el, total| total += el}).to eql(30)
+    end
+  end
+
+  describe '#multiply_els' do
+    it "returns a multiplier of all elements in the array" do
+      expect(array.multiply_els(array)).to eql(4704)
+    end
+  end
 end

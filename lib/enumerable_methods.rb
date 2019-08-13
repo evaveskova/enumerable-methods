@@ -76,3 +76,6 @@ def multiply_els(array)
 end
 
 end
+
+
+p [1,2,3,5,6,7].my_inject(0) {|el, total| total += el}
