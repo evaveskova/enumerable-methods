@@ -96,5 +96,9 @@ describe '::Enumerables' do
     end
   end
 
- 
+  describe '#multiply_els' do
+    it "returns a multiplier of all elements in the array" do
+      expect(array.multiply_els(array)).to eql(4704)
+    end
+  end
 end
