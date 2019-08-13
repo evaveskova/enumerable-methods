@@ -2,10 +2,8 @@
 
 require_relative '../lib/enumerable_methods'
 
-describe '::Enumerables' do
-  let(:array) { [1, 7, 3, 4, 7, 8] }
-
   describe '#my_each' do
+    let(:array) { [1, 7, 3, 4, 7, 8] }
     it 'returns the array' do
       expect do
         array.my_each { |a| print a }
@@ -21,6 +19,7 @@ describe '::Enumerables' do
   end
 
   describe '#my_each_with_index' do
+    let(:array) { [1, 7, 3, 4, 7, 8] }
     it 'returns elements and their index' do
       expect do
         array.my_each_with_index {
@@ -34,6 +33,7 @@ describe '::Enumerables' do
   end
 
   describe '#my_select' do
+    let(:array) { [1, 7, 3, 4, 7, 8] }
     it 'returns value which are less than 7' do
       expect(array.my_select { |a| a < 7 }).to eql([1, 3, 4])
     end
@@ -50,13 +50,14 @@ describe '::Enumerables' do
     end
   end
 
+  it 'returns false if no elements are equal to 2' do
+    expect(array.all? { |a| a == 2 }).to eql(false)
+  end
+
   describe '#my_any?' do
+    let(:array) { [1, 7, 3, 4, 7, 8] }
     it 'returns true if any element is even' do
       expect(array.my_any?(&:even?)).to eql(true)
-    end
-
-    it 'returns false if no elements are equal to 2' do
-      expect(array.all? { |a| a == 2 }).to eql(false)
     end
 
     it 'returns false if no element is greater than 8' do
@@ -65,6 +66,7 @@ describe '::Enumerables' do
   end
 
   describe '#my_none?' do
+    let(:array) { [1, 7, 3, 4, 7, 8] }
     it 'returns true if no element satisfies the block' do
       expect(array.my_none? { |el| el == 9 }).to eql(true)
     end
@@ -75,6 +77,7 @@ describe '::Enumerables' do
   end
 
   describe '#my_count' do
+    let(:array) { [1, 7, 3, 4, 7, 8] }
     it 'returns the correct number of elements' do
       expect(array.my_count { |a| a }).to eql(6)
     end
@@ -85,8 +88,8 @@ describe '::Enumerables' do
   end
 
   describe '#my_map' do
+    let(:array) { [1, 7, 3, 4, 7, 8] }
     it 'creates a new array with values returned by the block' do
-      # original test array = [1,7,3,4,7]
       expect(array.my_map { |x| x + 1 }).to eql([2, 8, 4, 5, 8, 9])
     end
 
@@ -96,6 +99,7 @@ describe '::Enumerables' do
   end
 
   describe '#my_inject' do
+    let(:array) { [1, 7, 3, 4, 7, 8] }
     it 'returns an accumulated value' do
       expect(array.my_inject(0) {
         |el, total| total + el }).to eql(30)
@@ -103,8 +107,8 @@ describe '::Enumerables' do
   end
 
   describe '#multiply_els' do
+    let(:array) { [1, 7, 3, 4, 7, 8] }
     it 'returns a multiplier of all elements in the array' do
       expect(array.multiply_els(array)).to eql(4704)
     end
   end
-end
