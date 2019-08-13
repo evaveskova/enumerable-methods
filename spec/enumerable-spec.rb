@@ -1,4 +1,5 @@
 require_relative '../lib/enumerable_methods'
+
 describe '::Enumerables' do
   let(:array) { [1,7,3,4,7,8] }
 
@@ -89,4 +90,11 @@ describe '::Enumerables' do
     end
   end
 
+  describe '#my_inject' do
+    it "returns an accumulated value" do 
+      expect(array.my_inject(0) {|el, total| total += el}).to eql(30)
+    end
+  end
+
+ 
 end
