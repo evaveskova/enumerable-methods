@@ -23,8 +23,9 @@ describe '::Enumerables' do
   describe '#my_each_with_index' do
     it 'returns elements and their index' do
       expect do
-        array.my_each_with_index {
-          |el, index = 0| puts "#{el} is in position #{index}" }
+        array.my_each_with_index do |el, index = 0|
+          puts "#{el} is in position #{index}"
+        end
       end.to output("1 is in position 0\n7 is in position
         1\n3 is in position 2\n4
         is in position 3\n7
@@ -97,8 +98,9 @@ describe '::Enumerables' do
 
   describe '#my_inject' do
     it 'returns an accumulated value' do
-      expect(array.my_inject(0) {
-        |el, total| total + el }).to eql(30)
+      expect(array.my_inject(0) do |el, total|
+               total + el
+             end).to eql(30)
     end
   end
 
