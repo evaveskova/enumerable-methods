@@ -23,8 +23,13 @@ describe '::Enumerables' do
   describe '#my_each_with_index' do
     it 'returns elements and their index' do
       expect do
-        array.my_each_with_index { |el, index = 0| puts "#{el} is in position #{index}" }
-      end.to output("1 is in position 0\n7 is in position 1\n3 is in position 2\n4 is in position 3\n7 is in position 4\n8 is in position 5\n").to_stdout
+        array.my_each_with_index {
+          |el, index = 0| puts "#{el} is in position #{index}" }
+      end.to output("1 is in position 0\n7 is in position
+        1\n3 is in position 2\n4
+        is in position 3\n7
+        is in position 4\n8
+        is in position 5\n").to_stdout
     end
   end
 
@@ -80,7 +85,7 @@ describe '::Enumerables' do
   end
 
   describe '#my_map' do
-    it 'creates a new array with the values returned by the block' do
+    it 'creates a new array with values returned by the block' do
       # original test array = [1,7,3,4,7]
       expect(array.my_map { |x| x + 1 }).to eql([2, 8, 4, 5, 8, 9])
     end
@@ -92,7 +97,8 @@ describe '::Enumerables' do
 
   describe '#my_inject' do
     it 'returns an accumulated value' do
-      expect(array.my_inject(0) { |el, total| total += el }).to eql(30)
+      expect(array.my_inject(0) {
+        |el, total| total + el }).to eql(30)
     end
   end
 
