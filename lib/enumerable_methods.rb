@@ -1,18 +1,18 @@
 module Enumerable
 def my_each
-  i = 0
-  while i < self.length
-    yield(self[i])
-    i += 1
-  end
+   i = 0
+   while i < self.length
+     yield(self[i])
+     i += 1
+   end
 end
 
 def my_each_with_index()
-  index = 0
-  for i in self
-    yield(self[index], index)
-    index += 1
-  end
+   index = 0
+   for i in self
+     yield(self[index], index)
+     index += 1
+   end
 end
 
 def my_select
@@ -76,3 +76,6 @@ def multiply_els(array)
 end
 
 end
+
+
+p [1,2,3,5,6,7].my_inject(0) {|el, total| total += el}
